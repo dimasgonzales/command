@@ -1,0 +1,32 @@
+#wrapper {
+	border-radius: 5px;
+    background: #222;
+    opacity: .8;
+    -webkit-box-shadow: 10px 11px 50px -4px rgba(0,0,0,1);
+    margin-right: 50px;
+}
+
+section#inputWrapper {
+	padding: 10px;
+
+	color: grey;
+	font: monaco 16px;
+}
+
+#inputWrapper div {
+	display: inline-block;
+}
+
+#inputWrapper div.inputItem {
+	width: 90%;
+}
+
+#inputWrapper div.inputItem input{
+	border: none;
+	background: #222;
+	color: #E8E8E8;	
+	outline: none;
+	width: 100%;
+	font: monaco 16px;
+}
+
