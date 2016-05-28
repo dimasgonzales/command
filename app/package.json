@@ -1,27 +1,25 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "command",
+  "version": "0.1.0",
+  "description": "A clone of OSX's spotlight feature",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron/electron-quick-start.git"
+    "url": "git+https://github.com/dimasgonzales/command"
   },
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial"
+    "command"
   ],
-  "author": "GitHub",
+  "author": "dimasgonzales",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/electron/electron-quick-start/issues"
+    "url": "https://github.com/dimasgonzales/command/issues"
   },
-  "homepage": "https://github.com/electron/electron-quick-start#readme",
+  "homepage": "https://github.com/dimasgonzales/command#readme",
   "devDependencies": {
     "electron-prebuilt": "^1.1.2"
   },
