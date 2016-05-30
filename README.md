@@ -1,9 +1,13 @@
 # command
-An open source version of OSX's Spotlight feature
 
-# Getting Started
+A clone of OSX's spotlight feature. I wanted to make an attractive way to start processes and programs that I run constantly.
+command uses the GitHub's electron project to make a native 
 
-```bash
+## Getting Started
+
+You can use Node.js' npm to run the application from source.
+
+```shell
 npm install
 npm start
 ```

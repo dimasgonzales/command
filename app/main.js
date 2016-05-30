@@ -2,29 +2,22 @@ const electron = require('electron')
 // Module to control application life.
 const app = electron.app
 
-const _commandAppOptions = { Options: {}, Commands: {} }
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
 var appModule = (function () {
-  function _init() {
-		validateConfig();
+	function _init() {
 		createWindow();
-  }
+	}
 
-  function validateConfig() {
-  	// body...
-  }
-
-  function createWindow () {
+	function createWindow () {
 		// Create the browser window.
 		var browserOptions = {width: 500, 
-						  height: 100, 
-						  frame:false,
-						  alwaysOnTop: true,
-						  transparent: true}
+							height: 100, 
+							frame:false,
+							alwaysOnTop: true,
+							transparent: true}
 
 		mainWindow = new electron.BrowserWindow( browserOptions );
 
@@ -40,9 +33,9 @@ var appModule = (function () {
 		})
 	}
 
-  return {
-	init: _init
-  }
+	return {
+		init: _init
+	}
 })();
 
 // This method will be called when Electron has finished

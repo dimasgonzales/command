@@ -30,3 +30,22 @@ section#inputWrapper {
 	font: monaco 16px;
 }
 
+hr.sectionDivider {
+	width: 90%;
+	margin: auto;
+}
+
+#resultsWrapper div.matchedCommand {
+ 	width: 80%;
+ 	margin: auto;
+}
+
+#resultsWrapper div.matchedCommand:hover,
+#resultsWrapper div.matchedCommand:active {
+	background: white;	
+}
+
+hr.matchesDivider {
+	width: 90%;
+	margin: auto;
+}
