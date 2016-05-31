@@ -13,11 +13,13 @@ var appModule = (function () {
 
 	function createWindow () {
 		// Create the browser window.
-		var browserOptions = {width: 500, 
-							height: 100, 
-							frame:false,
-							alwaysOnTop: true,
-							transparent: true}
+		var browserOptions = {
+								frame:false,
+								alwaysOnTop: true,
+								transparent: true,
+								useContentSize: true,
+								title: "command"
+							}
 
 		mainWindow = new electron.BrowserWindow( browserOptions );
 

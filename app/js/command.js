@@ -53,8 +53,14 @@ var commandModule = (function() {
 
 				});
 			}
-			else { // TODO: write default values to commandConfig.json
-				 alert("command has failed to read in an config json file.\nTODO: create config json file ")
+			else { // write default values to commandConfig.json
+				fs.writeFile("commandConfig.json", JSON.stringify(_data_commandOptions), function(err) {
+					if(err) {
+						throw err;
+					}
+
+					console.log("The file was saved!");
+				}); 
 			}
 		}); 
 	}
@@ -73,17 +79,23 @@ var commandModule = (function() {
 	}
 
 	function _data_doSoftCommand(commandSubstring) {
-		var matchingCommands = [];
-		_data_commandOptions.Commands.forEach(function (c, i){
-			if(c.command.indexOf(commandSubstring) > -1){
-				matchingCommands.push(c);
-			}
-		})
+		// var matchingCommands = [];
+		// _data_commandOptions.Commands.forEach(function (c, i){
+		// 	if(c.command.indexOf(commandSubstring) > -1){
+		// 		matchingCommands.push(c);
+		// 	}
+		// })
 
-		var html = mustache.render(commandMatchTemplate,{matches: matchingCommands});
+		// var html = mustache.render(matchesTemplate,{matches: matchingCommands});
+
+		// For testing purposes only
+		// TODO: remove
+		var matchingCommands = [{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"}];
+		var html = mustache.render(matchesTemplate,{matches: matchingCommands, matchType: "Commands"});
+		// TODO: remove
 
 		if(!!html) {
-			$("#resultsWrapper").html(html);
+			$("#resultsWrapper").html(html).append(html);
 		}
 	}
 
@@ -91,7 +103,7 @@ var commandModule = (function() {
 									"Options": {},
 									"Commands": {}
 								}
-	var commandMatchTemplate = "Commands<br><hr class='sectionDivider'>"
+	var matchesTemplate = "<h2>{{matchType}}</h2>"
 			+"{{#matches}}"
 				+"<div class='matchedCommand' data-command='{{command}}'>"
 					+"{{command}}"
