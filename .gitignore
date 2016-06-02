@@ -1,3 +1,7 @@
 
 # Directories #
 app/node_modules/*
+
+# Files #
+*.sublime-*
+commandConfig.json
