@@ -13,6 +13,8 @@ var commandModule = (function() {
 	function _dom_init(){
 		//set up event listeners
 		$("#inputWrapper input").on("keyup", _dom_onInputKeypress);
+		$("#resultsWapper div").on("click", _dom_onMatchClick);
+
 
 		//set the focus to be on the input element
 		$("#inputWrapper input").focus()
@@ -26,6 +28,12 @@ var commandModule = (function() {
 				// TODO
 				// _data_doHardCommand(commandSubstring);
 			}
+			else if (e.which === "38" || e.which == "40") {// up and down arrows
+			
+			}
+			else if (e.which === "37" || e.which === "39") {// left and right arrows
+				
+			}
 			else {
 				_data_doSoftCommand(commandSubstring);
 			}	
@@ -34,6 +42,11 @@ var commandModule = (function() {
 			$("#resultsWrapper").html("");
 		}
 		
+	}
+
+	function _dom_onMatchClick(e) {
+		var strCmd = $(e.target).data('command');
+		_data_runCommand(strCmd);
 	}
 
 	function _data_init() {
@@ -65,8 +78,12 @@ var commandModule = (function() {
 		}); 
 	}
 
+	function _data_runCommand(command) {
+		//TODO: execute command
+	}
+
 	function _data_doHardCommand(commandSubstring) {
-		var runCmdnRgx = /\s*run\s*"(.*)"/
+		var runCmdnRgx = /\brun\b\w*"(.*)"/
 		var matches = commandSubstring.match(runCmdnRgx)
 		if (!!matches) {
 			//TODO:
@@ -79,31 +96,25 @@ var commandModule = (function() {
 	}
 
 	function _data_doSoftCommand(commandSubstring) {
-		// var matchingCommands = [];
-		// _data_commandOptions.Commands.forEach(function (c, i){
-		// 	if(c.command.indexOf(commandSubstring) > -1){
-		// 		matchingCommands.push(c);
-		// 	}
-		// })
+		
+		_data_commandOptions.Commands = [{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"}];
+		
+		var matchingCommands = [];
+		_data_commandOptions.Commands.forEach(function (c, i){
+			if(c.command.indexOf(commandSubstring) > -1 && matchingCommands.length < 5){
+				matchingCommands.push(c);
+			}
+		})
 
-		// var html = mustache.render(matchesTemplate,{matches: matchingCommands});
-
-		// For testing purposes only
-		// TODO: remove
-		var matchingCommands = [{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"},{command: "start nginx"}, {command: "stop nginx"}, {command: "reload nginx"}];
-		var html = mustache.render(matchesTemplate,{matches: matchingCommands, matchType: "Commands"});
-		// TODO: remove
-
-		if(!!html) {
-			$("#resultsWrapper").html(html).append(html);
-		}
+		var html = mustache.render(commandMatchTemplate,{matches: matchingCommands, matchType: "Commands"});
+		$("#resultsWrapper").html(html);
 	}
 
 	var _data_commandOptions = {
 									"Options": {},
 									"Commands": {}
 								}
-	var matchesTemplate = "<h2>{{matchType}}</h2>"
+	var commandMatchTemplate = "<h2 style='margin:0;'>{{matchType}}</h2>"
 			+"{{#matches}}"
 				+"<div class='matchedCommand' data-command='{{command}}'>"
 					+"{{command}}"
